@@ -2,13 +2,18 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:800");
 @import url("https://fonts.googleapis.com/css?family=PT+Sans");
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
-@import url("mobile.scss");
 $white: #FFF;
 $grey: #EFF1F2;
 $light-black: #25282A;
 $black: #000;
 $button-color: #0059D9;
 $button-click-color: rgba(#0059D9, .7);
+$link-blue: #71ABFF;
+$twitter-blue: #51ADEF;
+$facebook-blue: #395A99;
+$telegram-blue: #2CA5E0;
+@import "mobile.scss";
+@import "slider.scss";
 
 html {
    color: $black;
@@ -36,16 +41,31 @@ html {
 }
 
 .h3 {
-   height: 52px;
    margin: 0;
 
    font-family: "Montserrat";
 
-   @include fontSize(18px, 52px, lg);
+   @include fontSize(18px, 24px, lg);
 }
 
 .p {
    margin: 8px 0 0 0;
+}
+
+.a {
+   transition: color .2s ease-in-out;
+   text-decoration: none;
+
+   color: $link-blue;
+}
+
+.a:hover {
+   color: $white;
+}
+
+.a:active {
+   opacity: .7;
+   color: $link-blue;
 }
 
 .hr {
@@ -57,6 +77,7 @@ html {
 }
 
 .button {
+   width: 100%;
    height: 52px;
    margin: 20px auto 0 auto;
 
@@ -64,7 +85,9 @@ html {
    transition: background-color .1s ease-in-out;
 
    color: $white;
+   border: none;
    border-radius: 4px;
+   outline: none;
    background: $button-color;
 
    font-family: "Montserrat";
@@ -80,12 +103,17 @@ html {
    background-color: $button-click-color;
 }
 
+.button::selection {
+   background: transparent;
+}
+
 .content {
    max-width: 700px;
    margin: 0 auto;
    padding: 100px 150px;
 
-   @include md(padding, 52px 40px);
+   @include md(padding, 52px 60px);
+   @include custom_size(padding, 52px 40px, 400px);
    @include xs(padding, 52px 20px);
 }
 
@@ -122,6 +150,9 @@ html {
 }
 
 .expectations {
+   .expectations__list {
+      height: 310px;
+   }
    .list {
       &__item {
          transition: color .3s ease-in-out, margin-bottom .3s ease-in-out;
@@ -154,17 +185,27 @@ html {
          .list__header {
             display: flex;
 
+            height: 52px;
+
             cursor: pointer;
+            transition: color .2s ease-in-out;
 
             color: $button-color;
 
             align-items: center;
             justify-content: space-between;
          }
+         .list__header:hover {
+            color: $black;
+         }
+         &:focus .list__header:active {
+            opacity: .7;
+            color: $button-color;
+         }
          &:focus .list__header {
             margin-bottom: -19%;
 
-            transition: margin-bottom .3s ease-in-out .1s;
+            transition: margin-bottom .2s ease-in-out;
 
             color: $black;
 
@@ -178,3 +219,136 @@ html {
       }
    }
 }
+
+.works {
+   text-align: center;
+
+   color: $white;
+   background: $light-black;
+   .content {
+      //use custom content size to make slider good looking
+      @include custom_size(padding, 52px 40px, 1000px);
+      @include custom_size(padding, 52px 20px, 400px);
+   }
+   &__header {
+      margin: 0;
+   }
+
+   &__header-text {
+      opacity: .7;
+   }
+   &__example {
+      margin: 80px auto 0 auto;
+
+      @include custom_size(max-width, 520px, 850px);
+      @include md(max-width, 280px);
+   }
+   .example {
+      &__description {
+         position: relative;
+         top: -16px;
+
+         max-width: 520px;
+         margin: 0;
+
+         text-align: left;
+
+         font-family: "PT Sans";
+
+         @include custom_size(top, 0, 850px);
+      }
+   }
+}
+
+.contacts {
+   text-align: center;
+
+   background: $grey;
+   .form {
+      &__message,
+      &__name,
+      &__email {
+         width: calc(100% - 15px);
+         padding-left: 12px;
+
+         border: 1px solid rgba(31,64,111,.20);
+         border-radius: 4px;
+      }
+      &__name,
+      &__email {
+         height: 36px;
+      }
+      &__info {
+         display: flex;
+      }
+      &__email {
+         margin-left: 20px;
+      }
+      &__message {
+         height: 136px;
+         margin: 20px 0 0 0;
+
+         resize: none;
+      }
+      &__file {
+         position: relative;
+
+         overflow: hidden;
+         input[type="file"] {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            width: 100%;
+            height: 36px;
+
+            cursor: pointer;
+
+            opacity: 0;
+            color: transparent;
+         }
+         .file-button {
+            width: 100%;
+            height: 36px;
+            margin: 16px auto 0 auto;
+
+            color: $button-color;
+            border: 1px solid rgba(31,64,111,.20);
+            border-radius: 4px;
+            background: transparent;
+         }
+      }
+   }
+   .social {
+      display: flex;
+
+      justify-content: center;
+      a:not(:first-child) {
+         margin-left: 16px;
+      }
+      &__item {
+         display: block;
+         display: flex;
+
+         width: 48px;
+         height: 48px;
+
+         color: $white;
+         border-radius: 50%;
+         background: $twitter-blue;
+
+         font-size: 1.5em;
+
+         align-items: center;
+         justify-content: center;
+      }
+      .facebook {
+         background: $facebook-blue;
+      }
+      .telegram {
+         background: $telegram-blue;
+      }
+   }
+}
+
+

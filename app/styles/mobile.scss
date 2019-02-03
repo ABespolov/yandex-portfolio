@@ -13,6 +13,13 @@ $break_xs: 320px;
    }
 }
 
+@mixin custom_size($name, $value, $size) {
+   @media screen and (max-width: $size) {
+      #{$name}: $value;
+   }
+}
+
+
 @mixin setFont($size, $line-height) {
    font-size: $size;
    line-height: $line-height;

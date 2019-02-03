@@ -13,12 +13,12 @@ const batch = require('gulp-batch');
 const autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('sass', function() {
-    gulp.src(['app/**/*.scss'])
+    gulp.src(['app/styles/styles.scss'])
         .pipe(sourcemaps.init())
-        .pipe(concat('styles.css'))
+        //.pipe(concat('styles.css'))
         .pipe(sass())
         .pipe(autoprefixer({
-            browsers: ['> 3%'],
+            browsers: ['ie >= 8', 'last 4 version'],
             cascade: false
         }))
         .pipe(sourcemaps.write())
