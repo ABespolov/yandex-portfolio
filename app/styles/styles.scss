@@ -1,0 +1,180 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:800");
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+@import url("https://fonts.googleapis.com/css?family=PT+Mono");
+@import url("mobile.scss");
+$white: #FFF;
+$grey: #EFF1F2;
+$light-black: #25282A;
+$black: #000;
+$button-color: #0059D9;
+$button-click-color: rgba(#0059D9, .7);
+
+html {
+   color: $black;
+
+   font-family: "PT Mono";
+
+   @include fontSize(14px, 20px, lg);
+}
+
+.h1 {
+   margin: 36px 0 0 0;
+
+   font-family: "Montserrat";
+
+   @include fontSize(40px, 44px, lg);
+   @include fontSize(32px, 36px, md);
+}
+
+.h2 {
+   margin: 0 auto 16px auto;
+
+   font-family: "Montserrat";
+
+   @include fontSize(32px, 36px, lg);
+}
+
+.h3 {
+   height: 52px;
+   margin: 0;
+
+   font-family: "Montserrat";
+
+   @include fontSize(18px, 52px, lg);
+}
+
+.p {
+   margin: 8px 0 0 0;
+}
+
+.hr {
+   height: 1px;
+   margin: 0;
+
+   border: 0;
+   background: #D2D9E2;
+}
+
+.button {
+   height: 52px;
+   margin: 20px auto 0 auto;
+
+   cursor: pointer;
+   transition: background-color .1s ease-in-out;
+
+   color: $white;
+   border-radius: 4px;
+   background: $button-color;
+
+   font-family: "Montserrat";
+   font-size: 18px;
+   line-height: 52px;
+}
+
+.button:hover {
+   background-color: $black;
+}
+
+.button:active {
+   background-color: $button-click-color;
+}
+
+.content {
+   max-width: 700px;
+   margin: 0 auto;
+   padding: 100px 150px;
+
+   @include md(padding, 52px 40px);
+   @include xs(padding, 52px 20px);
+}
+
+.header {
+   display: flex;
+
+   box-sizing: border-box;
+   min-height: 100vh;
+
+   text-align: center;
+
+   background: $grey;
+
+   align-items: center;
+   .content {
+      padding-top: 0;
+      padding-bottom: 0;
+   }
+
+   &__image {
+      width: 340px;
+      height: 340px;
+
+      border-radius: 50%;
+
+      @include md(width, 250px);
+      @include md(height, 250px);
+      @include xs(width, 205px);
+      @include xs(height, 205px);
+   }
+   &__button {
+      max-width: 280px;
+   }
+}
+
+.expectations {
+   .list {
+      &__item {
+         transition: color .3s ease-in-out, margin-bottom .3s ease-in-out;
+
+         color: transparent;
+         outline: 0;
+         &:focus {
+            position: relative;
+
+            margin-bottom: 150px;
+
+            cursor: pointer;
+
+            color: $black;
+
+            @include md(margin-bottom, 90px);
+         }
+         .list__text {
+            position: absolute;
+            top: -100%;
+         }
+         &:focus .list__text {
+            position: relative;
+            top: 130px;
+
+            cursor: auto;
+
+            @include md(top, 50px);
+         }
+         .list__header {
+            display: flex;
+
+            cursor: pointer;
+
+            color: $button-color;
+
+            align-items: center;
+            justify-content: space-between;
+         }
+         &:focus .list__header {
+            margin-bottom: -19%;
+
+            transition: margin-bottom .3s ease-in-out .1s;
+
+            color: $black;
+
+            .header__close {
+               transform: rotate(45deg);
+            }
+         }
+         .header__close {
+            transition: transform .3s ease-in-out;
+         }
+      }
+   }
+}

@@ -36,7 +36,7 @@ gulp.task('images', () =>
         }),
         imageminPngquant({
             speed: 1,
-            quality: 70
+            quality: [0.7, 0.8]
         })
     ]))
     .pipe(gulp.dest('dev/images'))

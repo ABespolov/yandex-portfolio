@@ -1,0 +1,33 @@
+$break_md: 600px;
+$break_xs: 320px;
+
+@mixin md($name, $value) {
+   @media screen and (max-width: $break_md) {
+      #{$name}: $value;
+   }
+}
+
+@mixin xs($name, $value) {
+   @media screen and (max-width: $break_xs) {
+      #{$name}: $value;
+   }
+}
+
+@mixin setFont($size, $line-height) {
+   font-size: $size;
+   line-height: $line-height;
+}
+
+@mixin fontSize($size, $line-height, $resolution) {
+   @if $resolution == md {
+      @media screen and (max-width: $break_md) {
+         @include setFont($size, $line-height)
+      }
+   } @else if $resolution == xs {
+      @media screen and (max-width: $break_xs) {
+         @include setFont($size, $line-height)
+      }
+   } @else {
+      @include setFont($size, $line-height);
+   }
+}
