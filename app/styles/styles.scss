@@ -322,8 +322,7 @@ html {
             color: #000;
 
             font-family: "PT Sans";
-
-            @include fontSize(16px, 20px, lg);
+            font-size: 16px;
          }
          &:focus {
             border: 1px solid #0059D9;
