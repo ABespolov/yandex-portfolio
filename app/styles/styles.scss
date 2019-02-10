@@ -77,12 +77,15 @@ html {
 }
 
 .button {
+   display: block;
+
    width: 100%;
    height: 52px;
    margin: 20px auto 0 auto;
 
    cursor: pointer;
    transition: background-color .1s ease-in-out;
+   text-decoration: none;
 
    color: $white;
    border: none;
@@ -112,9 +115,10 @@ html {
    margin: 0 auto;
    padding: 100px 150px;
 
-   @include md(padding, 52px 60px);
-   @include custom_size(padding, 52px 40px, 400px);
+   @include md(padding, 52px 40px);
    @include xs(padding, 52px 20px);
+   @include md(max-width, 520px);
+   @include xs(max-width, 280px);
 }
 
 .header {
@@ -128,37 +132,53 @@ html {
    background: $grey;
 
    align-items: center;
+
    .content {
       padding-top: 0;
       padding-bottom: 0;
    }
 
    &__image {
-      width: 340px;
-      height: 340px;
+      width: 100%;
+      max-width: 340px;
+      max-height: 340px;
 
       border-radius: 50%;
 
-      @include md(width, 250px);
-      @include md(height, 250px);
-      @include xs(width, 205px);
-      @include xs(height, 205px);
+      @include md(max-width, 250px);
+      @include md(max-height, 250px);
+      @include xs(max-width, 205px);
+      @include xs(max-height, 205px);
    }
+
    &__button {
       max-width: 280px;
+   }
+
+   &__person-info {
+      max-width: 450px;
+
+      opacity: .7;
+
+      @include md(max-width, 280px);
    }
 }
 
 .expectations {
    .expectations__list {
       height: 310px;
+
+      @include md(height, 350px);
+      @include md(height, 350px);
    }
+
    .list {
       &__item {
          transition: color .3s ease-in-out, margin-bottom .3s ease-in-out;
 
          color: transparent;
          outline: 0;
+
          &:focus {
             position: relative;
 
@@ -168,20 +188,24 @@ html {
 
             color: $black;
 
-            @include md(margin-bottom, 90px);
+            @include md(margin-bottom, 120px);
          }
+
          .list__text {
             position: absolute;
             top: -100%;
          }
+
          &:focus .list__text {
             position: relative;
             top: 130px;
 
             cursor: auto;
 
-            @include md(top, 50px);
+            @include md(top, 90px);
+            @include xs(top, 50px);
          }
+
          .list__header {
             display: flex;
 
@@ -195,13 +219,16 @@ html {
             align-items: center;
             justify-content: space-between;
          }
+
          .list__header:hover {
             color: $black;
          }
+
          &:focus .list__header:active {
             opacity: .7;
             color: $button-color;
          }
+
          &:focus .list__header {
             margin-bottom: -19%;
 
@@ -213,6 +240,7 @@ html {
                transform: rotate(45deg);
             }
          }
+
          .header__close {
             transition: transform .3s ease-in-out;
          }
@@ -221,15 +249,19 @@ html {
 }
 
 .works {
+   overflow: hidden;
+
    text-align: center;
 
    color: $white;
    background: $light-black;
+
    .content {
       //use custom content size to make slider good looking
       @include custom_size(padding, 52px 40px, 1000px);
       @include custom_size(padding, 52px 20px, 400px);
    }
+
    &__header {
       margin: 0;
    }
@@ -237,12 +269,15 @@ html {
    &__header-text {
       opacity: .7;
    }
+
    &__example {
       margin: 80px auto 0 auto;
 
-      @include custom_size(max-width, 520px, 850px);
-      @include md(max-width, 280px);
+      @include custom_size(width, 520px, 850px);
+      @include md(width, 420px);
+      @include custom_size(width, 280px, 500px);
    }
+
    .example {
       &__description {
          position: relative;
@@ -264,39 +299,76 @@ html {
    text-align: center;
 
    background: $grey;
+
+   &__text {
+      margin: 20px auto 40px auto;
+   }
+
    .form {
       &__message,
       &__name,
       &__email {
-         width: calc(100% - 15px);
+         box-sizing: border-box;
+         width: 100%;
          padding-left: 12px;
 
-         border: 1px solid rgba(31,64,111,.20);
+         border: 1px solid rgba(31, 64, 111, .20);
          border-radius: 4px;
+
+         font-family: "PT Sans";
+
+         &::placeholder {
+            opacity: .3;
+            color: #000;
+
+            font-family: "PT Sans";
+
+            @include fontSize(16px, 20px, lg);
+         }
+         &:focus {
+            border: 1px solid #0059D9;
+            border-radius: 4px;
+            outline: none;
+         }
       }
+
       &__name,
       &__email {
          height: 36px;
       }
+
       &__info {
          display: flex;
+
+         @include md(flex-flow, column);
       }
+
       &__email {
          margin-left: 20px;
+
+         @include md(margin, 16px auto 0 auto);
       }
+
       &__message {
+         width: 100%;
          height: 136px;
          margin: 20px 0 0 0;
+         padding: 6px 12px;
 
          resize: none;
+
+         @include md(margin, 16px 0 0 0);
       }
+
       &__file {
          position: relative;
 
          overflow: hidden;
+
          input[type="file"] {
             position: absolute;
-            top: 0;
+            z-index: 1;
+            top: 15px;
             right: 0;
 
             width: 100%;
@@ -307,25 +379,44 @@ html {
             opacity: 0;
             color: transparent;
          }
+
          .file-button {
+            position: relative;
+            z-index: 2;
+
             width: 100%;
             height: 36px;
             margin: 16px auto 0 auto;
 
+            cursor: pointer;
+
             color: $button-color;
-            border: 1px solid rgba(31,64,111,.20);
+            border: 1px solid rgba(31, 64, 111, .20);
             border-radius: 4px;
             background: transparent;
+            &:hover {
+               color: $black;
+            }
+            &:active {
+               opacity: .7;
+               color: $button-color;
+            }
+            &:focus {
+               outline: none;
+            }
          }
       }
    }
+
    .social {
       display: flex;
 
       justify-content: center;
+
       a:not(:first-child) {
          margin-left: 16px;
       }
+
       &__item {
          display: block;
          display: flex;
@@ -335,20 +426,31 @@ html {
 
          color: $white;
          border-radius: 50%;
-         background: $twitter-blue;
 
          font-size: 1.5em;
 
          align-items: center;
          justify-content: center;
       }
+
       .facebook {
          background: $facebook-blue;
+         &:hover {
+            background: darken($facebook-blue, 20%);
+         }
       }
+
       .telegram {
          background: $telegram-blue;
+         &:hover {
+            background: darken($telegram-blue, 20%);
+         }
+      }
+      .twitter {
+         background: $twitter-blue;
+         &:hover {
+            background: darken($twitter-blue, 20%);
+         }
       }
    }
 }
-
-

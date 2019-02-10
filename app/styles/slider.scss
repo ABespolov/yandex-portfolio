@@ -7,15 +7,18 @@
    width: 700px;
    margin: 40px auto;
 
-   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .75);
+   box-shadow: 0 2px 4px 0 rgba(0,0,0,.08), 0 7px 22px 0 rgba(0,0,0,.12);
 
    font-size: 700px;
+   
 
-   @include custom_size(width, 520px, 850px);
    @include custom_size(font-size, 520px, 850px);
-   @include md(font-size, 280px);
-   @include md(width, 280px);
-
+   @include custom_size(width, 520px, 850px);
+   @include md(font-size, 420px);
+   @include md(width, 420px);
+   
+   @include custom_size(font-size, 280px, 500px);
+   @include custom_size(width, 280px, 500px);
 
    .slider-inner {
       overflow: hidden;
@@ -33,7 +36,7 @@
       width: 1em;
       height: .5385714285714286em;
 
-      border-radius: 8px;
+      border-radius: 4px;
    }
 
    .switch {
@@ -49,6 +52,7 @@
       text-align: center;
 
       align-items: center;
+      @include custom_size(bottom, 20px, 850px);
       @include custom_size(justify-content, center, 850px);
       justify-content: flex-end;
       label {
@@ -63,6 +67,10 @@
          border-radius: 50%;
          background-color: $link-blue;
          box-shadow: 0 0 0 1px $light-black;
+      }
+
+      label:hover {
+         background: $white;
       }
    }
 }
